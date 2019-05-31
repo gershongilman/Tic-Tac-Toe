@@ -12,6 +12,7 @@ public:
 	bool gameFinished();
 	void reset();
 private:
+	bool checkLine(int i0, int j0, int di, int dj) const;
 	vector<vector<int>> b_type;
 	vector<vector<bool>> b_done; //is the move made in that square;
 };
