@@ -7,6 +7,7 @@
 #include <QtGui>
 #include<QDialog>
 #include <vector>
+#include <memory>
 #include <QLayoutItem>
 #include <logic.h>
 #ifndef MYWINDOW_H
@@ -25,7 +26,7 @@ private slots:
 	void exit();
 
 private:
-	QPushButton *button9;
+	unique_ptr<QPushButton> button9;
 	QPushButton *closeButton;
 	QGridLayout *mainLayout;
 	bool firstClick = true;

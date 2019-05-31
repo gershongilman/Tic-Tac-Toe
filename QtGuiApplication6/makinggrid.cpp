@@ -2,25 +2,26 @@
 #include <QtGui>
 #include <QLayoutItem>
 
-makinggrid::makinggrid(logic *loc)
+makinggrid::makinggrid(logic *loc) :
+	button9(new QPushButton("Reset/New Game"))
 {
 	setWindowTitle("Tic-Tac Toe");
 	closeButton = new QPushButton("End Game");
-	button9 = new QPushButton("Reset/New Game");
+//	button9 = new QPushButton("Reset/New Game");
 	mainLayout = new QGridLayout;
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			QPushButton *button = new QPushButton("_");
 			mainLayout->addWidget(button, i, j, 1, 1);
 			connect(button, &QPushButton::clicked, this, [=]() {this->checkClick(i, j,loc); });
-			connect(button9, &QPushButton::clicked, this, [=]() {this->reset(loc, button); });
+			connect(button9.get(), &QPushButton::clicked, this, [=]() {this->reset(loc, button); });
 		}
 	}
 	
 	
 	QObject::connect(closeButton, SIGNAL(clicked()), this, SLOT(exit()));
 	mainLayout->addWidget(closeButton, 3, 0, 1, 1);
-	mainLayout->addWidget(button9, 3, 1, 1, 2);
+	mainLayout->addWidget(button9.get(), 3, 1, 1, 2);
 	setLayout(mainLayout);
 
 }
